@@ -1,0 +1,240 @@
+/* ═══════════════════════════════════════
+   GEDANKEN 3000 — CSS
+   Film Credits Blog, User-Scroll
+═══════════════════════════════════════ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --mid-grey: #888888;
+  --light-grey: #d0d0d0;
+
+  /* SF Pro-like: system-ui uses SF Pro on macOS/iOS natively */
+  --font-ui: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue',
+             Arial, sans-serif;
+
+  --header-height: 110px;
+}
+
+/* ── Reset & Base ───────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  height: 100%;
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* ── Header ─────────────────────────────── */
+
+#site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+/* Fade mask below header */
+#site-header::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+#site-title {
+  font-family: var(--font-ui);
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--black);
+}
+
+#entry-counter {
+  font-family: var(--font-ui);
+  font-size: clamp(0.68rem, 1.8vw, 0.8rem);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+}
+
+#counter-number {
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* ── Page Content ────────────────────────── */
+
+#page-content {
+  padding-top: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Credits Track ───────────────────────── */
+
+#credits-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Individual Entry ────────────────────── */
+
+.entry {
+  width: 100%;
+  max-width: 640px;
+  padding: 72px 40px;
+  text-align: center;
+  border-bottom: 1px solid var(--light-grey);
+  position: relative;
+}
+
+.entry:last-child {
+  border-bottom: none;
+}
+
+/* Entry number */
+.entry-number {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--light-grey);
+  margin-bottom: 22px;
+}
+
+/* Date stamp */
+.entry-date {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 20px;
+}
+
+/* Optional title within entry */
+.entry-title {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 22px;
+}
+
+/* Main text */
+.entry-text {
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 2.4vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--black);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.entry-text em {
+  font-style: italic;
+}
+
+.entry-text strong {
+  font-weight: 600;
+}
+
+/* Divider glyph */
+.entry-divider {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--light-grey);
+  margin-top: 24px;
+  letter-spacing: 0.5em;
+}
+
+/* ── Impressum ───────────────────────────── */
+
+#impressum {
+  width: 100%;
+  max-width: 640px;
+  padding: 60px 40px 80px;
+  text-align: center;
+  border-top: 1px solid var(--light-grey);
+  margin-top: 20px;
+}
+
+#impressum h2 {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  margin-bottom: 20px;
+}
+
+#impressum p {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.9;
+  color: var(--mid-grey);
+  letter-spacing: 0.01em;
+}
+
+/* ── Responsive ─────────────────────────── */
+
+@media (max-width: 600px) {
+  :root {
+    --header-height: 90px;
+  }
+
+  .entry {
+    padding: 52px 24px;
+  }
+
+  #impressum {
+    padding: 48px 24px 64px;
+  }
+}
