@@ -29,20 +29,25 @@
 
 html {
   scroll-behavior: smooth;
+  /* verhindert das Aufblähen von Text im iOS-Querformat */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Nur hier, nicht zusätzlich auf dem body: overflow-x auf dem body würde
+     dessen overflow-y rechnerisch auf `auto` setzen und ihn damit zu einem
+     eigenen Scroll-Container machen. */
+  overflow-x: hidden;
 }
 
+/* Bewusst KEIN height:100% + overflow-y:auto auf dem body: das macht den Body
+   zu einem eigenen Scroll-Container und bricht in iOS-Safari Momentum-Scrolling
+   und position:fixed. Gescrollt wird das Dokument selbst. */
 html, body {
-  height: 100%;
+  min-height: 100%;
   background: var(--white);
   color: var(--black);
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .visually-hidden {
@@ -63,13 +68,20 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* deckend als Basis — ohne backdrop-filter würde Text durchscheinen */
+  background: var(--white);
   display: flex;
   flex-direction: column;
   align-items: stretch;
   border-bottom: 1px solid var(--light-grey);
+}
+
+@supports ((-webkit-backdrop-filter: blur(12px)) or (backdrop-filter: blur(12px))) {
+  #site-header {
+    background: rgba(255, 255, 255, 0.92);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
 }
 
 /* Fade mask below header */
@@ -117,7 +129,7 @@ body {
   font-weight: 600;
 }
 
-/* ── Controls: Suche + Altersfilter ─────── */
+/* ── Controls: Suche + Jahresfilter ─────── */
 
 #controls {
   display: flex;
@@ -198,6 +210,9 @@ body {
   cursor: pointer;
   padding: 0 0 1px;
   transition: background 0.15s ease;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 #search-clear:hover {
@@ -209,12 +224,12 @@ body {
   display: none;
 }
 
-#age-wrap {
+#year-wrap {
   display: flex;
-  flex: 0 1 auto;
+  flex: 0 0 auto;   /* darf nicht schrumpfen, sonst wird der Text beschnitten */
 }
 
-#age-select {
+#year-select {
   font-family: var(--font-ui);
   font-size: 0.72rem;
   font-weight: 500;
@@ -228,17 +243,26 @@ body {
   background-size: 9px 6px;
   border: 1px solid var(--light-grey);
   border-radius: 999px;
-  padding: 9px 30px 9px 15px;
+  /* rechts großzügig: Pfeil + der letzte letter-spacing-Abstand brauchen Platz,
+     sonst schneiden Safari/Chrome das letzte Wort ab */
+  padding: 9px 38px 9px 16px;
   cursor: pointer;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
   transition: border-color 0.18s ease;
+  /* Nicht auf die intrinsische Breite verlassen: Browser messen Text mit
+     letter-spacing unterschiedlich, dadurch wurde das letzte Wort abgeschnitten.
+     Feste Untergrenze mit Reserve statt millimetergenauer Passform. */
+  min-width: 180px;
   max-width: 100%;
+  text-overflow: ellipsis;
+  line-height: 1.35;
+  height: auto;
 }
 
-#age-select:hover,
-#age-select:focus {
+#year-select:hover,
+#year-select:focus {
   border-color: var(--black);
 }
 
@@ -252,8 +276,32 @@ body {
   height: 38px;
   display: flex;
   align-items: center;
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+  touch-action: pan-x;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Randverlauf als Overlay statt als mask-image: mask-image erzwingt in Safari
+   eine zusätzliche Compositing-Ebene und flackert dort zusammen mit dem
+   animierten Track. */
+#ticker::before,
+#ticker::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#ticker::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+#ticker::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 /* Bewegung kommt aus main.js (rAF), nicht aus einer CSS-Animation —
@@ -262,7 +310,9 @@ body {
   display: flex;
   align-items: center;
   width: max-content;
-  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .ticker-item {
@@ -280,6 +330,9 @@ body {
   white-space: nowrap;
   cursor: pointer;
   text-align: left;
+  touch-action: manipulation;   /* kein 300ms-Tap-Delay */
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .ticker-item:hover .ticker-text {
@@ -344,20 +397,16 @@ body {
   border-bottom: none;
 }
 
-/* kurzes Aufblitzen beim Sprung aus dem Ticker */
-.entry-flash::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--wash-grey);
-  animation: entry-flash 1.6s ease-out forwards;
-  pointer-events: none;
-  z-index: -1;
+/* Kurzes Aufblitzen beim Sprung aus dem Ticker.
+   Direkt auf dem Element animiert statt über ein ::before mit z-index:-1 —
+   negative z-index-Ebenen rendern in Safari unzuverlässig. */
+.entry-flash {
+  animation: entry-flash 1.6s ease-out;
 }
 
 @keyframes entry-flash {
-  0%   { opacity: 1; }
-  100% { opacity: 0; }
+  0%   { background-color: var(--wash-grey); }
+  100% { background-color: rgba(246, 246, 246, 0); }
 }
 
 /* Meta line: Datum — Nummer */
@@ -501,11 +550,15 @@ body {
     max-width: none;
   }
 
-  #age-wrap {
+  #year-wrap {
     flex: 1 1 100%;
   }
 
-  #age-select {
+  /* 16px ist die Schwelle, unter der iOS-Safari beim Fokussieren
+     ins Feld hineinzoomt. Pinch-Zoom bleibt erlaubt. */
+  #search-input,
+  #year-select {
+    font-size: 16px;
     width: 100%;
   }
 
@@ -539,8 +592,7 @@ body {
     overflow-x: auto;
   }
 
-  .entry-flash::before {
+  .entry-flash {
     animation: none;
-    opacity: 0;
   }
 }

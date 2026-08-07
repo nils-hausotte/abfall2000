@@ -4,16 +4,14 @@
  * Füge neue Einträge am ANFANG des Arrays hinzu (neueste zuerst).
  * Jeder Eintrag hat:
  *   - date:  ISO-Datum "JJJJ-MM-TT" (z.B. "2020-06-18")
- *            Wird automatisch als "18. Juni 2020" angezeigt und
- *            für die Alters-Sortierung (Nils, *06.02.2000) ausgewertet.
+ *            Wird automatisch als "18. Juni 2020" angezeigt; das Jahr
+ *            daraus füllt den Jahresfilter.
  *   - title: optionaler Kurztitel (oder null)
  *   - text:  der eigentliche Text (HTML erlaubt: <em>, <strong>)
  */
 
-const BIRTHDAY = "2000-02-06";
-
 const ENTRIES = [
-  /* ── Mit 26 ─────────────────────────────────────── */
+  /* ── 2026 ─────────────────────────────────────── */
   {
     date: "2026-08-04",
     title: "Sommer",
@@ -54,8 +52,6 @@ const ENTRIES = [
     title: null,
     text: "Man wird nicht älter an Geburtstagen. Man wird älter an den Tagen dazwischen, an denen niemand hinsieht."
   },
-
-  /* ── Mit 25 ─────────────────────────────────────── */
   {
     date: "2026-01-31",
     title: "Jahresende",
@@ -66,6 +62,8 @@ const ENTRIES = [
     title: null,
     text: "Januar ist ein Monat, der so tut, als wäre er ein Anfang. Dabei ist er nur der Dezember mit besserer Presse."
   },
+
+  /* ── 2025 ─────────────────────────────────────── */
   {
     date: "2025-12-24",
     title: "Heiligabend",
@@ -116,8 +114,6 @@ const ENTRIES = [
     title: null,
     text: "Ich habe versucht, weniger zu erklären und mehr zu zeigen. Es funktioniert. Es dauert nur länger."
   },
-
-  /* ── Mit 24 ─────────────────────────────────────── */
   {
     date: "2025-01-25",
     title: "Vorsatz",
@@ -128,6 +124,8 @@ const ENTRIES = [
     title: null,
     text: "Die Wohnung ist nach den Feiertagen zu still. Ich lasse den Wasserkocher laufen, nur wegen des Geräuschs."
   },
+
+  /* ── 2024 ─────────────────────────────────────── */
   {
     date: "2024-12-08",
     title: "Dezember",
@@ -178,13 +176,13 @@ const ENTRIES = [
     title: null,
     text: "Der Februar ist zu kurz für alles, was man sich für ihn vorgenommen hat. Das ist kein Fehler, das ist Fürsorge."
   },
-
-  /* ── Mit 23 ─────────────────────────────────────── */
   {
     date: "2024-01-19",
     title: "Winter",
     text: "Der Schnee bleibt nicht mehr liegen wie früher. Ich weiß nicht, ob das an der Stadt liegt oder an mir."
   },
+
+  /* ── 2023 ─────────────────────────────────────── */
   {
     date: "2023-12-31",
     title: null,
@@ -240,13 +238,13 @@ const ENTRIES = [
     title: null,
     text: "Man wird nicht dadurch erwachsen, dass man Antworten hat, sondern dadurch, dass man Fragen aushält."
   },
-
-  /* ── Mit 22 ─────────────────────────────────────── */
   {
     date: "2023-01-17",
     title: "Neujahr",
     text: "Die ersten Wochen im Jahr fühlen sich an wie fremde Schuhe. Man läuft sie ein oder gibt auf."
   },
+
+  /* ── 2022 ─────────────────────────────────────── */
   {
     date: "2022-12-19",
     title: null,
@@ -302,13 +300,13 @@ const ENTRIES = [
     title: null,
     text: "Zuneigung an einem festgelegten Tag ist wie ein Gedanke auf Bestellung: möglich, aber selten der beste."
   },
-
-  /* ── Mit 21 ─────────────────────────────────────── */
   {
     date: "2022-01-09",
     title: "Anfang, wieder",
     text: "Jeder Januar tut so, als wäre er der erste. Ich lasse ihm das."
   },
+
+  /* ── 2021 ─────────────────────────────────────── */
   {
     date: "2021-12-11",
     title: null,
@@ -364,8 +362,6 @@ const ENTRIES = [
     title: null,
     text: "Geburtstage sind Stichproben. Man prüft, ob man noch derselbe ist, und ist erleichtert, wenn nicht ganz."
   },
-
-  /* ── Mit 20 ─────────────────────────────────────── */
   {
     date: "2021-01-28",
     title: "Stillstand",
@@ -376,6 +372,8 @@ const ENTRIES = [
     title: null,
     text: "Ich habe Fotos vom letzten Sommer angesehen. Wir wussten damals nicht, wie gut es uns ging. Das ist vermutlich die Definition von <em>gut</em>."
   },
+
+  /* ── 2020 ─────────────────────────────────────── */
   {
     date: "2020-12-13",
     title: "Dezemberabend",

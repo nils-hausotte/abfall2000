@@ -2,7 +2,7 @@
  * main.js — GEDANKEN 3000
  *
  * Nutzer-gesteuertes Scrollen im Credits-Stil.
- * Dazu: Volltextsuche, Filter nach Lebensjahr (Alter von Nils)
+ * Dazu: Volltextsuche, Filter nach Jahr
  * und ein Ticker, der fünf zufällige Gedanken durchlaufen lässt.
  */
 
@@ -17,7 +17,7 @@
   const counterLbl  = document.getElementById('counter-label');
   const searchInput = document.getElementById('search-input');
   const searchClear = document.getElementById('search-clear');
-  const ageSelect   = document.getElementById('age-select');
+  const yearSelect   = document.getElementById('year-select');
   const tickerEl    = document.getElementById('ticker');
   const tickerTrack = document.getElementById('ticker-track');
   const noResults   = document.getElementById('no-results');
@@ -43,22 +43,6 @@
     return `${p.d}. ${MONTHS[p.m - 1]} ${p.y}`;
   }
 
-  /** Alter von Nils am Tag des Eintrags. */
-  function ageAt(iso) {
-    const born = parseISO(BIRTHDAY);
-    const at   = parseISO(iso);
-    let age = at.y - born.y;
-    if (at.m < born.m || (at.m === born.m && at.d < born.d)) age--;
-    return age;
-  }
-
-  /** Zeitraum eines Lebensjahres, z.B. "2020 – 2021". */
-  function ageSpan(age) {
-    const born = parseISO(BIRTHDAY);
-    const from = born.y + age;
-    return `${from}–${from + 1}`;
-  }
-
   function stripTags(html) {
     return html.replace(/<[^>]*>/g, '');
   }
@@ -79,6 +63,12 @@
            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
+  /** Inhalt ersetzen — statt replaceChildren(), das erst ab Safari 14 existiert. */
+  function setChildren(parent, node) {
+    while (parent.firstChild) parent.removeChild(parent.firstChild);
+    parent.appendChild(node);
+  }
+
   function shuffled(arr) {
     const copy = arr.slice();
     for (let i = copy.length - 1; i > 0; i--) {
@@ -97,7 +87,6 @@
    */
   const ITEMS = ENTRIES.map(function (entry, index) {
     const plain = stripTags(entry.text);
-    const age   = ageAt(entry.date);
     const dateLabel = formatDate(entry.date);
 
     return {
@@ -107,14 +96,14 @@
       title: entry.title,
       text: entry.text,
       plain: plain,
-      age: age,
-      haystack: [entry.title || '', plain, dateLabel, `mit ${age}`]
+      year: parseISO(entry.date).y,
+      haystack: [entry.title || '', plain, dateLabel]
         .join(' ')
         .toLowerCase()
     };
   });
 
-  const AGES = Array.from(new Set(ITEMS.map(i => i.age))).sort((a, b) => b - a);
+  const YEARS = Array.from(new Set(ITEMS.map(i => i.year))).sort((a, b) => b - a);
 
   /* ── Build Entries ──────────────────────────────── */
 
@@ -182,16 +171,16 @@
   function currentFilter() {
     return {
       term: searchInput.value.trim(),
-      age: ageSelect.value === 'all' ? null : Number(ageSelect.value)
+      year: yearSelect.value === 'all' ? null : Number(yearSelect.value)
     };
   }
 
   function render() {
-    const { term, age } = currentFilter();
+    const { term, year } = currentFilter();
     const needle = term.toLowerCase();
 
     const matches = ITEMS.filter(function (item) {
-      if (age !== null && item.age !== age) return false;
+      if (year !== null && item.year !== year) return false;
       if (needle && item.haystack.indexOf(needle) === -1) return false;
       return true;
     });
@@ -203,11 +192,11 @@
       fragment.appendChild(el);
     });
 
-    track.replaceChildren(fragment);
+    setChildren(track, fragment);
 
     noResults.hidden = matches.length > 0;
     searchClear.hidden = term.length === 0;
-    updateCounter(matches.length, term || age !== null);
+    updateCounter(matches.length, term || year !== null);
   }
 
   function updateCounter(shown, filtered) {
@@ -220,20 +209,20 @@
     }
   }
 
-  /* ── Age Dropdown ───────────────────────────────── */
+  /* ── Jahres-Dropdown ────────────────────────────── */
 
-  function populateAgeSelect() {
+  function populateYearSelect() {
     const fragment = document.createDocumentFragment();
 
-    AGES.forEach(function (age) {
-      const count = ITEMS.filter(i => i.age === age).length;
+    YEARS.forEach(function (year) {
+      const count = ITEMS.filter(i => i.year === year).length;
       const option = document.createElement('option');
-      option.value = String(age);
-      option.textContent = `Mit ${age} (${ageSpan(age)}) · ${count}`;
+      option.value = String(year);
+      option.textContent = `${year} — ${count}`;
       fragment.appendChild(option);
     });
 
-    ageSelect.appendChild(fragment);
+    yearSelect.appendChild(fragment);
   }
 
   /* ── Ticker ─────────────────────────────────────── */
@@ -248,6 +237,12 @@
       el.type = 'button';
       el.addEventListener('click', function () {
         jumpToEntry(item.number);
+        // Nach Tap/Klick keinen hängenden Fokus zurücklassen (Touch!).
+        if (!lastInputWasKeyboard) {
+          el.blur();
+          pausedByFocus = false;
+          syncTicker();
+        }
       });
     }
 
@@ -268,9 +263,22 @@
    */
   let tickerOffset = 0;   // aktuelle Verschiebung in px
   let tickerHalf   = 0;   // Breite einer Sequenz-Hälfte
-  let tickerPaused = false;
   let tickerLast   = 0;
   let tickerRAF    = null;
+
+  /* Zwei getrennte Pausengründe — sonst hebt ein Ereignis die Pause des
+     anderen auf (z.B. Klick mit der Maus, während der Zeiger noch drüber ist). */
+  let pausedByPointer = false;
+  let pausedByFocus   = false;
+
+  function tickerPaused() {
+    return pausedByPointer || pausedByFocus;
+  }
+
+  function syncTicker() {
+    if (tickerPaused()) stopTicker();
+    else startTicker();
+  }
 
   function tickerFrame(now) {
     if (!tickerLast) tickerLast = now;
@@ -279,14 +287,15 @@
 
     if (tickerHalf > 0) {
       tickerOffset = (tickerOffset + TICKER_SPEED * dt) % tickerHalf;
-      tickerTrack.style.transform = `translateX(${-tickerOffset}px)`;
+      // translate3d statt translateX: stabilere Compositing-Ebene in Safari
+      tickerTrack.style.transform = `translate3d(${-tickerOffset}px, 0, 0)`;
     }
 
     tickerRAF = requestAnimationFrame(tickerFrame);
   }
 
   function startTicker() {
-    if (tickerRAF !== null || tickerPaused || prefersReducedMotion()) return;
+    if (tickerRAF !== null || tickerPaused() || prefersReducedMotion()) return;
     tickerLast = 0;
     tickerRAF = requestAnimationFrame(tickerFrame);
   }
@@ -310,23 +319,47 @@
     picks.forEach(item => fragment.appendChild(buildTickerItem(item, false)));
     picks.forEach(item => fragment.appendChild(buildTickerItem(item, true)));
 
-    tickerTrack.replaceChildren(fragment);
+    setChildren(tickerTrack, fragment);
 
     // Erst nach dem Layout messen, sonst ist scrollWidth noch 0.
     requestAnimationFrame(function () {
       measureTicker();
       startTicker();
     });
+
+    // Nach dem Laden der Schriften kann sich die Breite ändern → neu messen.
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(measureTicker).catch(function () {});
+    }
   }
 
-  function pauseTicker() {
-    tickerPaused = true;
-    stopTicker();
+  /**
+   * Nur Tastaturfokus soll pausieren, Fokus durch Antippen nicht.
+   * Die Eingabeart wird selbst mitgeschrieben statt über `:focus-visible`
+   * abgefragt: dessen Heuristik fällt je nach Browser unterschiedlich aus und
+   * liefert für "tippen und dann fokussieren" teilweise `true` — der Ticker
+   * bliebe auf dem Handy dann für immer stehen.
+   */
+  let lastInputWasKeyboard = false;
+
+  function trackInputModality() {
+    const setKey     = function () { lastInputWasKeyboard = true; };
+    const setPointer = function () { lastInputWasKeyboard = false; };
+
+    document.addEventListener('keydown', setKey, true);
+    document.addEventListener('mousedown', setPointer, true);
+    document.addEventListener('pointerdown', setPointer, true);
+    document.addEventListener('touchstart', setPointer, { capture: true, passive: true });
   }
 
-  function resumeTicker() {
-    tickerPaused = false;
-    startTicker();
+  /** Scrollen mit Fallback für Browser ohne smooth-Option. */
+  function scrollToY(top) {
+    const y = Math.max(0, top);
+    if ('scrollBehavior' in document.documentElement.style) {
+      window.scrollTo({ top: y, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    } else {
+      window.scrollTo(0, y);
+    }
   }
 
   /** Springt zu einem Eintrag — hebt ggf. Filter auf, damit er sichtbar ist. */
@@ -335,13 +368,18 @@
 
     if (!target) {
       searchInput.value = '';
-      ageSelect.value = 'all';
+      yearSelect.value = 'all';
       render();
       target = document.getElementById(`eintrag-${number}`);
     }
 
     if (!target) return;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    const pageY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    scrollToY(pageY + target.getBoundingClientRect().top - (header.offsetHeight + 24));
+
+    target.classList.remove('entry-flash');
+    void target.offsetWidth;            // Reflow erzwingen → Animation neu starten
     target.classList.add('entry-flash');
     setTimeout(() => target.classList.remove('entry-flash'), 1600);
   }
@@ -364,9 +402,9 @@
       render();
     });
 
-    ageSelect.addEventListener('change', function () {
+    yearSelect.addEventListener('change', function () {
       render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      scrollToY(0);
     });
 
     // "/" fokussiert die Suche, Escape leert sie.
@@ -380,11 +418,41 @@
       }
     });
 
-    // Ticker friert beim Überfahren ein und läuft von genau dort weiter.
-    tickerEl.addEventListener('mouseenter', pauseTicker);
-    tickerEl.addEventListener('mouseleave', resumeTicker);
-    tickerEl.addEventListener('focusin', pauseTicker);
-    tickerEl.addEventListener('focusout', resumeTicker);
+    /* Ticker friert beim Überfahren mit der Maus ein und läuft von genau dort
+       weiter. Auf Touch-Geräten wird bewusst NICHT pausiert: dort bleibt nach
+       einem Tap der Hover- bzw. Fokuszustand hängen (kein mouseleave, kein
+       focusout), der Ticker würde also für immer stehen bleiben. */
+    if (window.PointerEvent) {
+      tickerEl.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'mouse') { pausedByPointer = true; syncTicker(); }
+      });
+      tickerEl.addEventListener('pointerleave', function (e) {
+        if (e.pointerType === 'mouse') { pausedByPointer = false; syncTicker(); }
+      });
+      tickerEl.addEventListener('pointercancel', function () {
+        pausedByPointer = false; syncTicker();
+      });
+    } else {
+      tickerEl.addEventListener('mouseenter', function () {
+        pausedByPointer = true; syncTicker();
+      });
+      tickerEl.addEventListener('mouseleave', function () {
+        pausedByPointer = false; syncTicker();
+      });
+    }
+
+    // Ältere Browser ohne Pointer Events feuern nach dem Tap ein Fake-Hover.
+    tickerEl.addEventListener('touchend', function () {
+      pausedByPointer = false;
+      syncTicker();
+    }, { passive: true });
+
+    tickerEl.addEventListener('focusin', function (e) {
+      if (lastInputWasKeyboard) { pausedByFocus = true; syncTicker(); }
+    });
+    tickerEl.addEventListener('focusout', function () {
+      pausedByFocus = false; syncTicker();
+    });
 
     window.addEventListener('resize', function () {
       syncHeaderHeight();
@@ -399,7 +467,8 @@
   /* ── Init ───────────────────────────────────────── */
 
   function init() {
-    populateAgeSelect();
+    trackInputModality();
+    populateYearSelect();
     render();
     buildTicker();
     syncHeaderHeight();
