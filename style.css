@@ -14,12 +14,15 @@
   --white: #ffffff;
   --mid-grey: #888888;
   --light-grey: #d0d0d0;
+  --hair-grey: #ececec;
+  --wash-grey: #f6f6f6;
 
   /* SF Pro-like: system-ui uses SF Pro on macOS/iOS natively */
   --font-ui: -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue',
              Arial, sans-serif;
 
-  --header-height: 110px;
+  /* wird von main.js an die tatsächliche Header-Höhe angeglichen */
+  --header-height: 218px;
 }
 
 /* ── Reset & Base ───────────────────────── */
@@ -42,6 +45,16 @@ body {
   overflow-x: hidden;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ── Header ─────────────────────────────── */
 
 #site-header {
@@ -50,15 +63,12 @@ body {
   left: 0;
   right: 0;
   z-index: 100;
-  height: var(--header-height);
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
+  align-items: stretch;
   border-bottom: 1px solid var(--light-grey);
 }
 
@@ -72,6 +82,15 @@ body {
   height: 60px;
   background: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, transparent 100%);
   pointer-events: none;
+}
+
+#header-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 20px 20px 0;
 }
 
 #site-title {
@@ -96,6 +115,199 @@ body {
 #counter-number {
   color: var(--black);
   font-weight: 600;
+}
+
+/* ── Controls: Suche + Altersfilter ─────── */
+
+#controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 16px 20px 16px;
+}
+
+#search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 260px;
+  max-width: 380px;
+}
+
+#search-icon {
+  position: absolute;
+  left: 12px;
+  width: 13px;
+  height: 13px;
+  color: var(--mid-grey);
+  pointer-events: none;
+}
+
+#search-input {
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--black);
+  background: var(--wash-grey);
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 9px 34px 9px 33px;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#search-input::placeholder {
+  color: var(--mid-grey);
+  letter-spacing: 0.04em;
+}
+
+#search-input:focus {
+  background: var(--white);
+  border-color: var(--black);
+}
+
+/* native Clear-Buttons unterdrücken — wir haben einen eigenen */
+#search-input::-webkit-search-decoration,
+#search-input::-webkit-search-cancel-button,
+#search-input::-webkit-search-results-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+#search-clear {
+  position: absolute;
+  right: 9px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--light-grey);
+  color: var(--white);
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 1px;
+  transition: background 0.15s ease;
+}
+
+#search-clear:hover {
+  background: var(--mid-grey);
+}
+
+/* [hidden] muss das display:flex oben schlagen */
+#search-clear[hidden] {
+  display: none;
+}
+
+#age-wrap {
+  display: flex;
+  flex: 0 1 auto;
+}
+
+#age-select {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--black);
+  background-color: var(--white);
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23888' stroke-width='1.2' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 9px 6px;
+  border: 1px solid var(--light-grey);
+  border-radius: 999px;
+  padding: 9px 30px 9px 15px;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color 0.18s ease;
+  max-width: 100%;
+}
+
+#age-select:hover,
+#age-select:focus {
+  border-color: var(--black);
+}
+
+/* ── Ticker ─────────────────────────────── */
+
+#ticker {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--hair-grey);
+  background: var(--black);
+  height: 38px;
+  display: flex;
+  align-items: center;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 44px), transparent 100%);
+}
+
+/* Bewegung kommt aus main.js (rAF), nicht aus einer CSS-Animation —
+   nur so friert der Ticker beim Hover exakt an Ort und Stelle ein. */
+#ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.ticker-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 0 0 auto;
+  padding: 0 4px;
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 0.74rem;
+  line-height: 1;
+  color: var(--white);
+  white-space: nowrap;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ticker-item:hover .ticker-text {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ticker-item:focus-visible {
+  outline: 1px solid var(--white);
+  outline-offset: 2px;
+}
+
+.ticker-num {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--mid-grey);
+}
+
+.ticker-text {
+  letter-spacing: 0.005em;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.ticker-sep {
+  font-size: 0.42rem;
+  color: var(--mid-grey);
+  padding: 0 18px;
+  transform: translateY(-2px);
 }
 
 /* ── Page Content ────────────────────────── */
@@ -125,33 +337,55 @@ body {
   text-align: center;
   border-bottom: 1px solid var(--light-grey);
   position: relative;
+  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 
 .entry:last-child {
   border-bottom: none;
 }
 
-/* Entry number */
-.entry-number {
-  display: block;
-  font-family: var(--font-ui);
-  font-size: 0.65rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  color: var(--light-grey);
-  margin-bottom: 22px;
+/* kurzes Aufblitzen beim Sprung aus dem Ticker */
+.entry-flash::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--wash-grey);
+  animation: entry-flash 1.6s ease-out forwards;
+  pointer-events: none;
+  z-index: -1;
 }
 
-/* Date stamp */
-.entry-date {
-  display: block;
+@keyframes entry-flash {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Meta line: Datum — Nummer */
+.entry-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
   font-family: var(--font-ui);
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.entry-date {
   color: var(--mid-grey);
-  margin-bottom: 20px;
+}
+
+.entry-meta-sep,
+.entry-number {
+  color: var(--light-grey);
+}
+
+.entry-number {
+  letter-spacing: 0.2em;
 }
 
 /* Optional title within entry */
@@ -184,6 +418,14 @@ body {
   font-weight: 600;
 }
 
+/* Suchtreffer */
+.entry mark {
+  background: #ffe9a8;
+  color: var(--black);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
 /* Divider glyph */
 .entry-divider {
   display: block;
@@ -191,6 +433,25 @@ body {
   color: var(--light-grey);
   margin-top: 24px;
   letter-spacing: 0.5em;
+}
+
+/* ── Empty State ─────────────────────────── */
+
+#no-results {
+  width: 100%;
+  max-width: 640px;
+  padding: 110px 40px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  line-height: 2;
+  letter-spacing: 0.06em;
+  color: var(--mid-grey);
+}
+
+#no-results span {
+  color: var(--light-grey);
+  font-size: 0.8rem;
 }
 
 /* ── Impressum ───────────────────────────── */
@@ -226,8 +487,34 @@ body {
 /* ── Responsive ─────────────────────────── */
 
 @media (max-width: 600px) {
-  :root {
-    --header-height: 90px;
+  #header-top {
+    padding: 14px 16px 0;
+  }
+
+  #controls {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  #search-wrap {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+
+  #age-wrap {
+    flex: 1 1 100%;
+  }
+
+  #age-select {
+    width: 100%;
+  }
+
+  #ticker {
+    height: 34px;
+  }
+
+  .ticker-item {
+    font-size: 0.7rem;
   }
 
   .entry {
@@ -236,5 +523,24 @@ body {
 
   #impressum {
     padding: 48px 24px 64px;
+  }
+}
+
+/* ── Reduced Motion ─────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Ticker steht still (siehe prefersReducedMotion in main.js), lässt sich
+     aber von Hand durchschieben. */
+  #ticker {
+    overflow-x: auto;
+  }
+
+  .entry-flash::before {
+    animation: none;
+    opacity: 0;
   }
 }

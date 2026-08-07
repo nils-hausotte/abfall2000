@@ -13,8 +13,46 @@
 
   <!-- Fixed Header -->
   <header id="site-header">
-    <h1 id="site-title">GEDANKEN 3000</h1>
-    <p id="entry-counter"><span id="counter-number">0</span> and counting</p>
+
+    <div id="header-top">
+      <h1 id="site-title">GEDANKEN 3000</h1>
+      <p id="entry-counter">
+        <span id="counter-number">0</span>
+        <span id="counter-label">and counting</span>
+      </p>
+    </div>
+
+    <!-- Search + Age filter -->
+    <div id="controls">
+      <div id="search-wrap">
+        <svg id="search-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <circle cx="7" cy="7" r="4.6" fill="none" stroke="currentColor" stroke-width="1.4" />
+          <line x1="10.4" y1="10.4" x2="14" y2="14" stroke="currentColor" stroke-width="1.4"
+            stroke-linecap="round" />
+        </svg>
+        <input
+          id="search-input"
+          type="search"
+          placeholder="Gedanken durchsuchen"
+          aria-label="Gedanken durchsuchen"
+          autocomplete="off"
+          spellcheck="false" />
+        <button id="search-clear" type="button" aria-label="Suche zurücksetzen" hidden>×</button>
+      </div>
+
+      <label id="age-wrap">
+        <span class="visually-hidden">Nach Lebensjahr filtern</span>
+        <select id="age-select" aria-label="Nach Lebensjahr filtern">
+          <option value="all">Alle Jahre</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- Ticker: 5 zufällige Einträge, laufen von rechts nach links -->
+    <div id="ticker" aria-label="Zufällige Gedanken">
+      <div id="ticker-track"></div>
+    </div>
+
   </header>
 
   <!-- Main scrollable content -->
@@ -22,6 +60,12 @@
 
     <!-- Blog entries (injected by JS) -->
     <main id="credits-track" role="main" aria-label="Gedanken-Einträge"></main>
+
+    <!-- Empty state -->
+    <p id="no-results" hidden>
+      Keine Gedanken gefunden.<br />
+      <span>Vielleicht war er noch nicht dran.</span>
+    </p>
 
     <!-- Impressum -->
     <footer id="impressum" aria-label="Impressum">
