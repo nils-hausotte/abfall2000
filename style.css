@@ -386,15 +386,10 @@ html, body {
 .entry {
   width: 100%;
   max-width: 640px;
-  padding: 72px 40px;
+  padding: 56px 40px;
   text-align: center;
-  border-bottom: 1px solid var(--light-grey);
   position: relative;
   scroll-margin-top: calc(var(--header-height) + 24px);
-}
-
-.entry:last-child {
-  border-bottom: none;
 }
 
 /* Kurzes Aufblitzen beim Sprung aus dem Ticker.
@@ -577,7 +572,7 @@ html, body {
   }
 
   .entry {
-    padding: 52px 24px;
+    padding: 42px 24px;
   }
 
   #impressum {
