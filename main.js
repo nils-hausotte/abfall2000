@@ -3,7 +3,7 @@
  *
  * Nutzer-gesteuertes Scrollen im Credits-Stil.
  * Dazu: Volltextsuche, Filter nach Jahr
- * und ein Ticker, der fünf zufällige Gedanken durchlaufen lässt.
+ * und ein Ticker, der 20 zufällige Gedanken durchlaufen lässt.
  */
 
 (function () {
@@ -27,7 +27,7 @@
     'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'
   ];
 
-  const TICKER_ITEMS  = 5;
+  const TICKER_ITEMS  = 20;
   const TICKER_SPEED  = 55;   // Pixel pro Sekunde
   const EXCERPT_CHARS = 95;
 
@@ -44,7 +44,13 @@
   }
 
   function stripTags(html) {
-    return html.replace(/<[^>]*>/g, '');
+    // <br> wird zum Leerzeichen — sonst kleben Zeilen in Suche und Ticker
+    // aneinander ("...gehtWORAUF...").
+    return html
+      .replace(/<br\s*\/?>/gi, ' ')
+      .replace(/<[^>]*>/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
   }
 
   function escapeRegExp(str) {
@@ -93,11 +99,10 @@
       number: ENTRIES.length - index,
       iso: entry.date,
       dateLabel: dateLabel,
-      title: entry.title,
       text: entry.text,
       plain: plain,
       year: parseISO(entry.date).y,
-      haystack: [entry.title || '', plain, dateLabel]
+      haystack: [plain, dateLabel]
         .join(' ')
         .toLowerCase()
     };
@@ -121,12 +126,7 @@
              `<span class="entry-number"># ${String(item.number).padStart(3, '0')}</span>` +
              `</span>`;
 
-    if (item.title) {
-      inner += `<span class="entry-title">${item.title}</span>`;
-    }
-
     inner += `<p class="entry-text">${item.text}</p>`;
-    inner += `<span class="entry-divider" aria-hidden="true">· · ·</span>`;
 
     div.innerHTML = inner;
     return div;
@@ -248,8 +248,7 @@
 
     el.innerHTML =
       `<span class="ticker-num"># ${String(item.number).padStart(3, '0')}</span>` +
-      `<span class="ticker-text">${item.title ? item.title + ' — ' : ''}` +
-      `${excerpt(item.plain, EXCERPT_CHARS)}</span>` +
+      `<span class="ticker-text">${excerpt(item.plain, EXCERPT_CHARS)}</span>` +
       `<span class="ticker-sep" aria-hidden="true">◆</span>`;
 
     return el;
