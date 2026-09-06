@@ -64,7 +64,7 @@ const ENTRIES = [
   },
   {
     date:  "2026-09-03",
-    text:  "Beklemmung der Nippel<br>Erweiterung des Arschlochs"
+    text:  "Zunehmende Beklemmung bei gleichzeitiger Erweiterung<br>Beklemmung der Nippel<br>Erweiterung des Arschlochs"
   },
   {
     date:  "2026-09-02",
@@ -144,7 +144,7 @@ const ENTRIES = [
   },
   {
     date:  "2026-08-30",
-    text:  "ES GEHÖRT ALLES IN EINE KISTE REIN"
+    text:  "DAS MUSS ALLES MITEINANDER VERBUNDEN WERDEN<br>ES GEHÖRT ALLES IN EINE KISTE REIN"
   },
   {
     date:  "2026-08-30",
@@ -1708,7 +1708,7 @@ const ENTRIES = [
   },
   {
     date:  "2026-05-12",
-    text:  "Serotonin Vorstufe"
+    text:  "Vorstufe Serotonin<br>Serotonin Vorstufe"
   },
   {
     date:  "2026-05-11",
@@ -1728,7 +1728,7 @@ const ENTRIES = [
   },
   {
     date:  "2026-05-10",
-    text:  "Frei nach<br>No pain no gain"
+    text:  "Ohne Schmerz kein Wachstum<br>Frei nach<br>No pain no gain"
   },
   {
     date:  "2026-05-10",
@@ -2324,11 +2324,11 @@ const ENTRIES = [
   },
   {
     date:  "2026-03-11",
-    text:  "Kurz wieder gebraucht fühlen"
+    text:  "Kurz wieder wichtig fühlen<br>Kurz wieder gebraucht fühlen"
   },
   {
     date:  "2026-03-11",
-    text:  "Sauer weil hungrig<br><br>Böse weil hungrig"
+    text:  "Wütend weil hungrig<br>Sauer weil hungrig<br><br>Böse weil hungrig"
   },
   {
     date:  "2026-03-11",
@@ -2528,7 +2528,7 @@ const ENTRIES = [
   },
   {
     date:  "2026-03-04",
-    text:  "Bitte jetzt nicht böse sein"
+    text:  "Nicht böse sein bitte<br>Bitte jetzt nicht böse sein"
   },
   {
     date:  "2026-03-04",
@@ -4226,11 +4226,11 @@ const ENTRIES = [
   },
   {
     date:  "2025-10-04",
-    text:  "Lassen wir das Huhn entscheiden"
+    text:  "Wir lassen das Huhn entscheiden<br>Lassen wir das Huhn entscheiden"
   },
   {
     date:  "2025-10-01",
-    text:  "Mein Werdegang ist nicht deiner"
+    text:  "Dein Werdegang ist nicht meiner<br>Mein Werdegang ist nicht deiner"
   },
   {
     date:  "2025-09-30",
@@ -4246,7 +4246,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-09-29",
-    text:  "Kauf dir was Neues<br><br>Kauf dir was Schönes"
+    text:  "Kauf dir was<br>Kauf dir was Neues<br><br>Kauf dir was Schönes"
   },
   {
     date:  "2025-09-29",
@@ -4258,7 +4258,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-09-28",
-    text:  "Big deals with big brands"
+    text:  "Große Deals mit großen Marken<br>Big deals with big brands"
   },
   {
     date:  "2025-09-27",
@@ -4266,7 +4266,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-09-25",
-    text:  "Ein Chor dreht durch<br><br>Ein Chor rastet komplett aus<br><br>Ein Chor schießt sich bis zum Mond und nie wieder zurück weil es dort so viel geiler ist als hier"
+    text:  "Ein Chor geht hart<br>Ein Chor dreht durch<br><br>Ein Chor rastet komplett aus<br><br>Ein Chor schießt sich bis zum Mond und nie wieder zurück weil es dort so viel geiler ist als hier"
   },
   {
     date:  "2025-09-23",
@@ -5278,7 +5278,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-06-16",
-    text:  "Alles Teppich"
+    text:  "Teppich<br>Alles Teppich"
   },
   {
     date:  "2025-06-16",
@@ -5726,7 +5726,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-05-08",
-    text:  "Kurz leben<br>Wieder umziehen"
+    text:  "Umziehen<br>Kurz leben<br>Wieder umziehen"
   },
   {
     date:  "2025-05-08",
@@ -5990,7 +5990,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-04-05",
-    text:  "Wie geht glücklich sein"
+    text:  "Mama<br>Wie geht glücklich sein"
   },
   {
     date:  "2025-04-05",
@@ -6110,7 +6110,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-03-21",
-    text:  "die über allem schwebt"
+    text:  "ANGST<br>die über allem schwebt"
   },
   {
     date:  "2025-03-21",
@@ -6614,7 +6614,7 @@ const ENTRIES = [
   },
   {
     date:  "2025-01-12",
-    text:  "Nach der Show Ego streicheln"
+    text:  "Vor der Show Nervenzusammenbruch<br>Nach der Show Ego streicheln"
   },
   {
     date:  "2025-01-12",
@@ -7504,7 +7504,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-09-11",
-    text:  "Volk der Ängstlichen"
+    text:  "Deutschland<br>Volk der Ängstlichen"
   },
   {
     date:  "2024-09-11",
@@ -7632,7 +7632,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-08-11",
-    text:  "Eine Kommentargesellschaft"
+    text:  "Deutschland<br>Eine Kommentargesellschaft"
   },
   {
     date:  "2024-08-10",
@@ -7916,7 +7916,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-06-26",
-    text:  "Ein einziger Fahrgast in der letzten Reihe"
+    text:  "Straßenbahn<br>Ein einziger Fahrgast in der letzten Reihe"
   },
   {
     date:  "2024-06-26",
@@ -8272,7 +8272,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-05-17",
-    text:  "Aber was ist hinter den Fenstern<br>was ist hinter den Fenstern"
+    text:  "So viele kleine Fenster<br>Aber was ist hinter den Fenstern<br>was ist hinter den Fenstern"
   },
   {
     date:  "2024-05-17",
@@ -8476,7 +8476,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-05-08",
-    text:  "Passt"
+    text:  "Okay<br>Passt"
   },
   {
     date:  "2024-05-08",
@@ -8572,7 +8572,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-04-30",
-    text:  "Dumm rumlaufen"
+    text:  "Berlin<br>Dumm rumlaufen"
   },
   {
     date:  "2024-04-29",
@@ -9528,7 +9528,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-15",
-    text:  "Sie ist nicht da<br><br>Donnerstagabend<br>Du bist nicht da<br><br>Donnerstagabend<br>Ich denk an dich<br><br>Donnerstagabend<br>Ich vermisse dich"
+    text:  "Donnerstagabend<br>Sie ist nicht da<br><br>Donnerstagabend<br>Du bist nicht da<br><br>Donnerstagabend<br>Ich denk an dich<br><br>Donnerstagabend<br>Ich vermisse dich"
   },
   {
     date:  "2024-03-14",
@@ -9712,7 +9712,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-02",
-    text:  "Nichts ist für immer"
+    text:  "Im besten Sinne<br>Nichts ist für immer"
   },
   {
     date:  "2024-03-02",
@@ -9740,7 +9740,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-01",
-    text:  "Einige Situationen zum Wort Arschfussel<br><br>So wenn hier jetzt noch einmal jemand das Wort ARSCHFUSSEL verwendet raste ich aus<br><br>DU HAST DA EINEN ARSCHFUSSEL<br><br>Lekker Arschfussel<br><br>808s & Arschfussel<br><br>Es war ein kalter Montagmorgen. Sie saß auf dem Klo unf fummelte sich einen Arschfussel aus der Kimme.<br><br>Arschfussel sammeln für eine bessere Welt. Für ein bisschen mehr Weltfrieden.<br><br>Schreibe tausendmal das Wort ARSCHFUSSEL in dein Nachsitzbuch du Drecksbengel<br><br>ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL"
+    text:  "Einige Situationen zum Wort Arschfussel<br><br>So wenn hier jetzt noch einmal jemand das Wort ARSCHFUSSEL verwendet raste ich aus<br><br>DU HAST DA EINEN ARSCHFUSSEL<br><br>Lekker Arschfussel<br><br>808s &amp; Arschfussel<br><br>Es war ein kalter Montagmorgen. Sie saß auf dem Klo unf fummelte sich einen Arschfussel aus der Kimme.<br><br>Arschfussel sammeln für eine bessere Welt. Für ein bisschen mehr Weltfrieden.<br><br>Schreibe tausendmal das Wort ARSCHFUSSEL in dein Nachsitzbuch du Drecksbengel<br><br>ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL ARSCHFUSSEL"
   },
   {
     date:  "2024-02-29",
@@ -9748,7 +9748,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-02-29",
-    text:  "Eine Hose<br>Eine Hose geht<br>Eine Hose geht um<br>Eine Hose geht um die<br>Eine Hose geht um die Welt"
+    text:  "Eine<br>Eine Hose<br>Eine Hose geht<br>Eine Hose geht um<br>Eine Hose geht um die<br>Eine Hose geht um die Welt"
   },
   {
     date:  "2024-02-29",
@@ -9960,7 +9960,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-02-05",
-    text:  "Wie gehts dir?<br>Scheiße. Danke."
+    text:  "Wie gehts dir? Scheiße. Danke.<br>Wie gehts dir?<br>Scheiße. Danke."
   },
   {
     date:  "2024-02-05",
@@ -11642,7 +11642,7 @@ const ENTRIES = [
   },
   {
     date:  "2023-06-01",
-    text:  "„Meine Damen und Herren und alle dazwischen und außerhalb, schön, dass sie heute Abend gekommen sind. Wir sind die schlechteste Band der Welt!“"
+    text:  "DIE SCHLECHTESTE BAND DER WELT<br>„Meine Damen und Herren und alle dazwischen und außerhalb, schön, dass sie heute Abend gekommen sind. Wir sind die schlechteste Band der Welt!“"
   },
   {
     date:  "2023-06-01",
@@ -11826,7 +11826,7 @@ const ENTRIES = [
   },
   {
     date:  "2023-04-19",
-    text:  "sexy<br>chill<br>cool"
+    text:  "smart<br>sexy<br>chill<br>cool"
   },
   {
     date:  "2023-04-19",
@@ -12094,7 +12094,7 @@ const ENTRIES = [
   },
   {
     date:  "2023-02-26",
-    text:  "WIEVIEL PASST AUF EINE SEITE fragte sich die Waschmaschine, während H&M geschlossen hatte."
+    text:  "WIEVIEL PASST AUF EINE SEITE fragte sich die Waschmaschine, während H&amp;M geschlossen hatte."
   },
   {
     date:  "2023-02-26",
@@ -12102,11 +12102,11 @@ const ENTRIES = [
   },
   {
     date:  "2023-02-24",
-    text:  "Warum bin ich zwischenmenschlich komplett überfordert wenn mich der Typ auf der Straße von dieser Organisation um ein Spendenabo bittet<br><br>Warum habe ich ein schlechtes Gewissen wenn ich mich im Laden umfassend beraten lasse und dann doch nichts kaufe<br><br>Warum muss ich mir was kaufen um mich besser zu fühlen<br><br>Warum hängt mein Selbstwert von der Bestätigung anderer Leute ab<br><br>Warum muss ich Musik hören um mich besser zu fühlen<br><br>Warum ist die Banane krumm<br><br>Warum stehe ich fünfzehn Minuten vor dem Kleiderschrank um mich bestmöglich vor diesen Menschen zu zeigen bin dann trotzdem unzufrieden mit dem Outfit steige in das Auto bin zu spät dran weil ich fünfzehn Minuten vor dem Kleiderschrank stand schaffe es nicht mehr rechtzeitig zum Beginn der Veranstaltung drehe um fahre wieder nach Hause ich habe mich nicht mal mehr aufgeregt den Ärger einfach weggeatmet und dann noch Frühstück eingekauft<br><br>Warum brauche ich Drogen um zu funktionieren<br><br>Warum liegen lauter ungelesene Bücher auf meinem Schreibtisch<br><br>Warum ist mein Immunsystem im Arsch<br><br>Warum habe ich Zukunftsängste<br><br>Warum esse ich immer wieder Nudeln mit Pesto<br><br>Warum müssen meine Eltern aus der Heimat 800 Kilometer in meine Stadt reisen damit ich mal raus in die Natur komme"
+    text:  "Mein Augenlid zuckt immernoch<br>Warum bin ich zwischenmenschlich komplett überfordert wenn mich der Typ auf der Straße von dieser Organisation um ein Spendenabo bittet<br><br>Warum habe ich ein schlechtes Gewissen wenn ich mich im Laden umfassend beraten lasse und dann doch nichts kaufe<br><br>Warum muss ich mir was kaufen um mich besser zu fühlen<br><br>Warum hängt mein Selbstwert von der Bestätigung anderer Leute ab<br><br>Warum muss ich Musik hören um mich besser zu fühlen<br><br>Warum ist die Banane krumm<br><br>Warum stehe ich fünfzehn Minuten vor dem Kleiderschrank um mich bestmöglich vor diesen Menschen zu zeigen bin dann trotzdem unzufrieden mit dem Outfit steige in das Auto bin zu spät dran weil ich fünfzehn Minuten vor dem Kleiderschrank stand schaffe es nicht mehr rechtzeitig zum Beginn der Veranstaltung drehe um fahre wieder nach Hause ich habe mich nicht mal mehr aufgeregt den Ärger einfach weggeatmet und dann noch Frühstück eingekauft<br><br>Warum brauche ich Drogen um zu funktionieren<br><br>Warum liegen lauter ungelesene Bücher auf meinem Schreibtisch<br><br>Warum ist mein Immunsystem im Arsch<br><br>Warum habe ich Zukunftsängste<br><br>Warum esse ich immer wieder Nudeln mit Pesto<br><br>Warum müssen meine Eltern aus der Heimat 800 Kilometer in meine Stadt reisen damit ich mal raus in die Natur komme"
   },
   {
     date:  "2023-02-24",
-    text:  "Eine<br>Stunde wird zu einem<br>Tag wird zu einer<br>Wurstsemmel wird zu einer<br>Woche wird zu einem<br>Monat Wird zu einem<br>Jahr wird zu einem<br>Ausnahmezustand wird zu einem<br>Jahrzehnt wird zu einem<br>Leben"
+    text:  "Eine Stunde wird zu einem Leben<br>Eine<br>Stunde wird zu einem<br>Tag wird zu einer<br>Wurstsemmel wird zu einer<br>Woche wird zu einem<br>Monat Wird zu einem<br>Jahr wird zu einem<br>Ausnahmezustand wird zu einem<br>Jahrzehnt wird zu einem<br>Leben"
   },
   {
     date:  "2023-02-22",
@@ -12208,7 +12208,7 @@ const ENTRIES = [
   /* ── 2022 ──────────────────────────────────────────── */
   {
     date:  "2022-12-31",
-    text:  "Ein Mensch zündet eine Rakete<br>Er meldet sich zu Wort"
+    text:  "Das neue Jahr steht vor der Tür<br>Ein Mensch zündet eine Rakete<br>Er meldet sich zu Wort"
   },
   {
     date:  "2022-12-31",
@@ -12316,7 +12316,7 @@ const ENTRIES = [
   },
   {
     date:  "2022-08-08",
-    text:  "ich habe mich zuso lange unterhalten und vergessen auf meine Sachen zu achten"
+    text:  "Etwas liegen geblieben auf dem Weg ist etwas liegen geblieben<br>ich habe mich zuso lange unterhalten und vergessen auf meine Sachen zu achten"
   },
   {
     date:  "2022-08-07",

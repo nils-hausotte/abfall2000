@@ -6,3 +6,7 @@ pythonTest.py
 Gedanken3001/
 
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc

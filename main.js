@@ -13,6 +13,7 @@
 
   const header      = document.getElementById('site-header');
   const track       = document.getElementById('credits-track');
+  const homeButton  = document.getElementById('home-button');
   const counterEl   = document.getElementById('counter-number');
   const counterLbl  = document.getElementById('counter-label');
   const searchInput = document.getElementById('search-input');
@@ -274,7 +275,34 @@
     return pausedByPointer || pausedByFocus;
   }
 
+  function isHovered() {
+    try {
+      return tickerEl.matches(':hover');
+    } catch (e) {
+      return false;                     // :hover kennt nicht jede Engine
+    }
+  }
+
+  /**
+   * Hebt Pausen auf, deren Grund nicht mehr existiert.
+   *
+   * `pointerleave` und `focusout` kommen nicht zuverlässig an: verlässt der
+   * Zeiger den Ticker während eines Tab- oder Fensterwechsels, oder wird das
+   * fokussierte Element aus dem DOM genommen, bleibt das Gegenereignis aus —
+   * das Flag stünde dann für immer auf `true` und der Ticker liefe nie wieder
+   * an. Darum wird vor jeder Entscheidung gegengeprüft.
+   *
+   * Wichtig: hier wird ausschließlich *entpausiert*, nie pausiert. Auf
+   * Touch-Geräten bleibt `:hover` nach einem Tap hängen — daraus darf niemals
+   * eine Pause entstehen.
+   */
+  function refreshPauseState() {
+    if (pausedByPointer && !isHovered()) pausedByPointer = false;
+    if (pausedByFocus && !tickerEl.contains(document.activeElement)) pausedByFocus = false;
+  }
+
   function syncTicker() {
+    refreshPauseState();
     if (tickerPaused()) stopTicker();
     else startTicker();
   }
@@ -303,6 +331,14 @@
     if (tickerRAF === null) return;
     cancelAnimationFrame(tickerRAF);
     tickerRAF = null;
+  }
+
+  /* Letzte Rückfallebene: Falls gar kein Ereignis mehr kommt, prüft der Ticker
+     einmal pro Sekunde selbst nach, ob seine Pause noch berechtigt ist. */
+  function startTickerWatchdog() {
+    setInterval(function () {
+      if (tickerPaused() || tickerRAF === null) syncTicker();
+    }, 1000);
   }
 
   function measureTicker() {
@@ -361,6 +397,9 @@
     }
   }
 
+  let flashTimer  = null;
+  let flashTarget = null;
+
   /** Springt zu einem Eintrag — hebt ggf. Filter auf, damit er sichtbar ist. */
   function jumpToEntry(number) {
     let target = document.getElementById(`eintrag-${number}`);
@@ -377,10 +416,20 @@
     const pageY = window.pageYOffset || document.documentElement.scrollTop || 0;
     scrollToY(pageY + target.getBoundingClientRect().top - (header.offsetHeight + 24));
 
+    // Bei schnellen Mehrfachklicks darf der Timer des vorigen Sprungs die
+    // Markierung des neuen Ziels nicht wieder abräumen.
+    if (flashTimer !== null) clearTimeout(flashTimer);
+    if (flashTarget) flashTarget.classList.remove('entry-flash');
+
+    flashTarget = target;
     target.classList.remove('entry-flash');
     void target.offsetWidth;            // Reflow erzwingen → Animation neu starten
     target.classList.add('entry-flash');
-    setTimeout(() => target.classList.remove('entry-flash'), 1600);
+    flashTimer = setTimeout(function () {
+      target.classList.remove('entry-flash');
+      flashTimer = null;
+      flashTarget = null;
+    }, 1600);
   }
 
   /* ── Header-Höhe → CSS-Variable ─────────────────── */
@@ -393,6 +442,12 @@
   /* ── Events ─────────────────────────────────────── */
 
   function bindEvents() {
+    // Klick auf den Seitentitel scrollt zurück nach oben zum ersten Eintrag.
+    // Filter und Suche bleiben dabei bewusst stehen.
+    homeButton.addEventListener('click', function () {
+      scrollToY(0);
+    });
+
     searchInput.addEventListener('input', render);
 
     searchClear.addEventListener('click', function () {
@@ -431,6 +486,14 @@
       tickerEl.addEventListener('pointercancel', function () {
         pausedByPointer = false; syncTicker();
       });
+      /* Falls das `pointerenter` verloren ging (z.B. weil der Zeiger beim
+         Tab-Wechsel schon über dem Ticker stand), zieht die erste Bewegung
+         die Pause nach. */
+      tickerEl.addEventListener('pointermove', function (e) {
+        if (e.pointerType === 'mouse' && !pausedByPointer) {
+          pausedByPointer = true; syncTicker();
+        }
+      });
     } else {
       tickerEl.addEventListener('mouseenter', function () {
         pausedByPointer = true; syncTicker();
@@ -458,6 +521,12 @@
       measureTicker();
     });
 
+    /* Beim Wechsel zurück in den Tab oder ins Fenster kann der Zeiger längst
+       woanders sein, ohne dass ein pointerleave kam — also nachfassen. */
+    document.addEventListener('visibilitychange', syncTicker);
+    window.addEventListener('focus', syncTicker);
+    window.addEventListener('blur', syncTicker);
+
     if (typeof ResizeObserver !== 'undefined') {
       new ResizeObserver(syncHeaderHeight).observe(header);
     }
@@ -472,6 +541,7 @@
     buildTicker();
     syncHeaderHeight();
     bindEvents();
+    startTickerWatchdog();
   }
 
   document.addEventListener('DOMContentLoaded', init);

@@ -115,6 +115,38 @@ html, body {
   color: var(--black);
 }
 
+/* Der Titel ist ein Button (zurück nach oben) — soll aber wie Text aussehen. */
+#home-button {
+  display: inline-block;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.18s ease;
+}
+
+#home-button:hover {
+  opacity: 0.55;
+}
+
+#home-button:focus {
+  outline: none;
+}
+
+#home-button:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 4px;
+}
+
 #entry-counter {
   font-family: var(--font-ui);
   font-size: clamp(0.68rem, 1.8vw, 0.8rem);
