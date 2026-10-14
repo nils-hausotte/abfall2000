@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════
-   GEDANKEN 3000 — CSS
+   ABFALL 2000 — CSS
    Film Credits Blog, User-Scroll
 ═══════════════════════════════════════ */
 
@@ -300,6 +300,11 @@ html, body {
 
 /* ── Ticker ─────────────────────────────── */
 
+/* Höhe wird von main.js beim Scrollen verkleinert (Ticker schiebt sich weg). */
+#ticker-clip {
+  overflow: hidden;
+}
+
 #ticker {
   position: relative;
   overflow: hidden;
@@ -419,7 +424,7 @@ html, body {
   width: 100%;
   max-width: 640px;
   padding: 56px 40px;
-  text-align: center;
+  text-align: left;
   position: relative;
   scroll-margin-top: calc(var(--header-height) + 24px);
 }
@@ -440,7 +445,7 @@ html, body {
 .entry-meta {
   display: flex;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 9px;
   flex-wrap: wrap;
   font-family: var(--font-ui);
@@ -468,7 +473,7 @@ html, body {
 .entry-text {
   font-family: var(--font-ui);
   font-size: clamp(1rem, 2.4vw, 1.2rem);
-  line-height: 1.8;
+  line-height: 1.5;
   color: var(--black);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -509,34 +514,113 @@ html, body {
   font-size: 0.8rem;
 }
 
-/* ── Impressum ───────────────────────────── */
+/* ── Footer ──────────────────────────────── */
 
-#impressum {
+#site-footer {
   width: 100%;
   max-width: 640px;
-  padding: 60px 40px 80px;
-  text-align: center;
+  padding: 48px 40px 72px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   border-top: 1px solid var(--light-grey);
   margin-top: 20px;
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--light-grey);
 }
 
-#impressum h2 {
+#site-footer a,
+#legal-link {
+  color: var(--mid-grey);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+#site-footer a:hover,
+#legal-link:hover {
+  color: var(--black);
+}
+
+/* Immer erreichbar, ohne durch tausende Einträge zu scrollen. */
+#header-top {
+  position: relative;
+}
+
+#legal-link {
+  position: absolute;
+  top: 12px;
+  right: 16px;
   font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ── Impressum & Datenschutz (impressum.html) ── */
+
+#legal {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 40px 96px;
+  font-family: var(--font-ui);
+}
+
+.legal-back {
+  display: inline-block;
+  margin-bottom: 48px;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mid-grey);
+  text-decoration: none;
+}
+
+.legal-back:hover {
+  color: var(--black);
+}
+
+#legal section + section {
+  margin-top: 64px;
+  padding-top: 48px;
+  border-top: 1px solid var(--light-grey);
+}
+
+#legal h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+#legal h2 {
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--mid-grey);
-  margin-bottom: 20px;
+  margin: 32px 0 10px;
 }
 
-#impressum p {
-  font-family: var(--font-ui);
-  font-size: 0.8rem;
-  font-weight: 400;
-  line-height: 1.9;
+#legal p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+#legal p + p {
+  margin-top: 16px;
+}
+
+#legal a {
+  color: inherit;
+  text-underline-offset: 3px;
+}
+
+#legal .legal-back {
   color: var(--mid-grey);
-  letter-spacing: 0.01em;
 }
 
 /* ── Responsive ─────────────────────────── */
@@ -607,8 +691,18 @@ html, body {
     padding: 42px 24px;
   }
 
-  #impressum {
-    padding: 48px 24px 64px;
+  #site-footer {
+    padding: 40px 24px 56px;
+  }
+
+  #legal {
+    padding: 32px 24px 72px;
+  }
+
+  /* über der Titelzeile, damit er schmale Titel nicht überlappt */
+  #legal-link {
+    top: 4px;
+    right: 12px;
   }
 }
 

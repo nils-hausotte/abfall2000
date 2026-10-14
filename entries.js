@@ -1,11 +1,555 @@
 /**
  * entries.js — GEDANKEN 3000
  *
- * Auto-generated from 3129 markdown notes.
+ * Auto-generated from 3240 markdown notes.
  */
 
 const ENTRIES = [
   /* ── 2026 ──────────────────────────────────────────── */
+  {
+    date:  "2026-10-14",
+    text:  "Wär ich Zahnarzt ich würde Porsche fahren"
+  },
+  {
+    date:  "2026-10-14",
+    text:  "Lies es dir durch<br>Hör dir das an<br>Vertrau"
+  },
+  {
+    date:  "2026-10-14",
+    text:  "Akzeptieren dass es Scheiße ist"
+  },
+  {
+    date:  "2026-10-14",
+    text:  "Belüge dich selbst mit WhatsApp Web"
+  },
+  {
+    date:  "2026-10-14",
+    text:  "Heute überleben"
+  },
+  {
+    date:  "2026-10-14",
+    text:  "Schreibe dreitausendmal ICH WILL KEIN VERKÄUFER SEIN vielleicht wird es dann wahr"
+  },
+  {
+    date:  "2026-10-13",
+    text:  "Ist zehn Stunden Bildschirmzeit zu viel"
+  },
+  {
+    date:  "2026-10-13",
+    text:  "Was tust du ohne Untertitel"
+  },
+  {
+    date:  "2026-10-13",
+    text:  "Click Internet click click"
+  },
+  {
+    date:  "2026-10-13",
+    text:  "Ein paar hundert sollten reichen"
+  },
+  {
+    date:  "2026-10-12",
+    text:  "Zahnstocher in Mund"
+  },
+  {
+    date:  "2026-10-12",
+    text:  "WANN HAST DU ENDLICH DEINEN DURCHBRUCH schreit es fünfhundertmal 24/7 und dreihundertfünfundsechszig Tage im Jahresmondkalender"
+  },
+  {
+    date:  "2026-10-12",
+    text:  "Die aktuelle Schräglage"
+  },
+  {
+    date:  "2026-10-12",
+    text:  "Du bist eine Spaßpistole"
+  },
+  {
+    date:  "2026-10-12",
+    text:  "Helm aus Coca Cola"
+  },
+  {
+    date:  "2026-10-11",
+    text:  "Hast du durst<br>Nein danke ich hab Suppe"
+  },
+  {
+    date:  "2026-10-11",
+    text:  "Viel weder noch"
+  },
+  {
+    date:  "2026-10-11",
+    text:  "Fragen beruht auf Gegenseitigkeit"
+  },
+  {
+    date:  "2026-10-11",
+    text:  "Das Ich ist nicht genug"
+  },
+  {
+    date:  "2026-10-10",
+    text:  "Geld bleibt Geld"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Ein Bett für fünf Monate"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Triff mich in der Ruhezone"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Du gehst auf Instagram nur um zu vergessen warum du auf Instagram gegangen bist"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Cash only<br>only Cash"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Drei Gedichte p.a."
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Ich vs. Brain"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Make love to your girl / man / whatever"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Make Sex tonight"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Bilderbuch ist die beste Band der Welt"
+  },
+  {
+    date:  "2026-10-09",
+    text:  "Dankbar für jede Person die forscht"
+  },
+  {
+    date:  "2026-10-08",
+    text:  "Krank sind wir alle gleich"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Mister Krabbe und Patrick Stern"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Baum in meinem Kopf"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Feuer ist heiß"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Unglücklich in Pforzheim"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "TAUBE warum willst du sterben"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Geh in den Laden und kauf es"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Auf einmal extreme Lust auf 2035"
+  },
+  {
+    date:  "2026-10-07",
+    text:  "Ich<br>lasse es<br>jetzt bleiben"
+  },
+  {
+    date:  "2026-10-06",
+    text:  "Fisch trifft Qualle<br>Hallo<br>Hast du schon<br>die Neuigkeiten gehört<br>Nein<br>Danke"
+  },
+  {
+    date:  "2026-10-06",
+    text:  "Was denkt der Palästinenser wenn er sein Bein verloren hat woher nimmt er seine Kraft"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Google Street View fährt jetzt Mercedes"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Die Vermarktung des Inhalts ist der Inhalt"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Umarme deinen Partner / deine Partnerin"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Mach ein Projekt mit deinen Friends"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Erschieß dich mit der Donnerbüchse"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Das Geld nur logische Konsequenz"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Geh jetzt da runter"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Klingel mit Doppler Effekt"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Eine Sekunde zu viel geguckt"
+  },
+  {
+    date:  "2026-10-05",
+    text:  "Lies eintausend Bücher diesen Herbst"
+  },
+  {
+    date:  "2026-10-04",
+    text:  "Das echte Leben was ist das"
+  },
+  {
+    date:  "2026-10-03",
+    text:  "Haus Maus Rap"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Das ließt sich jetzt wie ein Abschiedsbrief"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "In der Natur verschwinden dreißig Jahre lang"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Unmittelbare Reaktionen"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Was liegt im Verborgenen"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Die Schönheit des Nebensächlichen"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Immer vom maximal Schlimmsten ausgehen"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Zum Arbeiten nach Polen weil Deutschland keine Jobs mehr hat"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "In einer Minute alles gesagt"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Das Konzept ist kein Konzept zu haben"
+  },
+  {
+    date:  "2026-10-02",
+    text:  "Hätte ich drei Millionen ich kaufte ein Haus"
+  },
+  {
+    date:  "2026-10-01",
+    text:  "Audi zahlt keine Gewerbesteuern mehr"
+  },
+  {
+    date:  "2026-10-01",
+    text:  "Für immer stärker als KI"
+  },
+  {
+    date:  "2026-10-01",
+    text:  "Zielgruppe Mitte zwanzig bis unendlich"
+  },
+  {
+    date:  "2026-09-30",
+    text:  "ICH WÜRDE GERNE WISSEN WER ZUSTÄNDIG IST"
+  },
+  {
+    date:  "2026-09-30",
+    text:  "Wer ist zuständig für den Quatsch"
+  },
+  {
+    date:  "2026-09-30",
+    text:  "Wie lang trägt die Scheiße"
+  },
+  {
+    date:  "2026-09-30",
+    text:  "Lass es unkommentiert"
+  },
+  {
+    date:  "2026-09-30",
+    text:  "Exponentielles Wachstum existiert ausschließlich im Blumenbeet"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "You are a Schatz"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Alles subjektive Erfahrungen"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Alle haben ihre Gründe"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Zuwenig geliebt fühlen sich ausnahmslos alle, hat Adorno wohl gesagt"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Ich ruhte mich aus"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Kommuniziere ausschließlich in Mittelfingern"
+  },
+  {
+    date:  "2026-09-29",
+    text:  "Zum Glück nie angefangen"
+  },
+  {
+    date:  "2026-09-28",
+    text:  "Trösten und getröstet werden"
+  },
+  {
+    date:  "2026-09-28",
+    text:  "Das Ich ist lyrisch zu verstehen"
+  },
+  {
+    date:  "2026-09-28",
+    text:  "Es kann nur besser werden sagt man sich doch gerne"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Jeder kann ein Business machen ist das Äquivalent zu jeder Mensch kann Künstler sein"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Wald ist Körper"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Größtmöglicher Frieden beim Spaziergang durch die Nacht"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "RECHTFERTIGUNGSGESELLSCHAFT"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Schicksalhafter Sonntag"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Universell einsetzbar"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Bin mit Ramzey maximal Outside"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Lass mich dein Abfall sein"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Guten Tag in den Start"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Dem Sunday Running Club ins Gesicht schlagen"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Deinem Gegenüber auf den Schoß kotzen"
+  },
+  {
+    date:  "2026-09-27",
+    text:  "Ohne Grund die Bäckerei zusammenschreien"
+  },
+  {
+    date:  "2026-09-26",
+    text:  "Sprich nur in Futur 2<br>Plusquamperfekt ist für Dumme"
+  },
+  {
+    date:  "2026-09-26",
+    text:  "Kaputte Nase wie Haftbefehl aber denk jetzt bitte nicht an Kokain"
+  },
+  {
+    date:  "2026-09-26",
+    text:  "Was ist die Lesart"
+  },
+  {
+    date:  "2026-09-25",
+    text:  "Scheiss auf Rechtschreibung mach keinen Punkt vergiss dein Komma und die Frage wird als Ruf geschrieben gross oder klein auch schon egal"
+  },
+  {
+    date:  "2026-09-25",
+    text:  "Durch die Blume die Wahrheit sagen"
+  },
+  {
+    date:  "2026-09-24",
+    text:  "Warum willst du STYLE UND DAS GELD"
+  },
+  {
+    date:  "2026-09-23",
+    text:  "Die Möglichkeit Geld zu verdienen"
+  },
+  {
+    date:  "2026-09-23",
+    text:  "Mehr als nur ein Witz"
+  },
+  {
+    date:  "2026-09-22",
+    text:  "Karsten mit C oder mit K<br>Camillo sagt er würde ihm das C gönnen<br>ich denke an den Kasten"
+  },
+  {
+    date:  "2026-09-22",
+    text:  "Mein Hund namens Karsten"
+  },
+  {
+    date:  "2026-09-22",
+    text:  "Auf deinem Tshirt ist Ketchup"
+  },
+  {
+    date:  "2026-09-20",
+    text:  "I had to make a confession at the confession center"
+  },
+  {
+    date:  "2026-09-20",
+    text:  "Spaß renn um dein Leben"
+  },
+  {
+    date:  "2026-09-19",
+    text:  "Mach Langsam wieder laut"
+  },
+  {
+    date:  "2026-09-19",
+    text:  "Ich danke der Spar Verkäuferin für mein Essen"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "Die Hurensohn Nazis werden uns nicht kriegen"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "Schließ dich weg geh nicht vor die Tür bleib allein allein allein"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "Aus der Geduckten heraus agieren"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "Chronisch angeschossen"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "ALIVE WITH PLEASURE steht auf einem Tshirt ich ziehe es mir heute an"
+  },
+  {
+    date:  "2026-09-18",
+    text:  "Die Wiener Rattenverordnung"
+  },
+  {
+    date:  "2026-09-17",
+    text:  "Normaler Dienstag"
+  },
+  {
+    date:  "2026-09-17",
+    text:  "Das Glück wird angerufen da gibts kein Faxgerät"
+  },
+  {
+    date:  "2026-09-17",
+    text:  "Das muss man sich im Kontext anschauen"
+  },
+  {
+    date:  "2026-09-17",
+    text:  "Am Berg verrecken"
+  },
+  {
+    date:  "2026-09-17",
+    text:  "Blitz trifft Baum"
+  },
+  {
+    date:  "2026-09-14",
+    text:  "Chicken Sales"
+  },
+  {
+    date:  "2026-09-14",
+    text:  "Wenn dein Kopf HALBBEWUSSTE VERWALTUNG betreibt jeden Tag sortieren und verwalten sortieren und verwalten sortieren und verwalten LÖSCHEN"
+  },
+  {
+    date:  "2026-09-13",
+    text:  "Es ist nicht so einfach"
+  },
+  {
+    date:  "2026-09-13",
+    text:  "Stress zwischen Mensch und Kuh"
+  },
+  {
+    date:  "2026-09-12",
+    text:  "Weiter oben ist die Sonne stärker"
+  },
+  {
+    date:  "2026-09-11",
+    text:  "wen interessiert<br>DAS GESCHWÄTZ DER ANDEREN als<br>größtmöglicher Störfaktor"
+  },
+  {
+    date:  "2026-09-11",
+    text:  "du<br>weißt nicht<br>was es ist<br>aber du<br>genießt es"
+  },
+  {
+    date:  "2026-09-10",
+    text:  "Heiner Müller ist die Antwort"
+  },
+  {
+    date:  "2026-09-10",
+    text:  "Der Algorithmus wird dich nicht belohnen<br>der Algorithmus wird sich drehen drei mal im Kreis herum und dann einen Abflug machen"
+  },
+  {
+    date:  "2026-09-10",
+    text:  "CrackFit"
+  },
+  {
+    date:  "2026-09-09",
+    text:  "Der Betrug trägt keine Maske er lächelt dich an"
+  },
+  {
+    date:  "2026-09-08",
+    text:  "SCHONE DEINE SCHULTERN sagt die Orthopädin sie tragen viel sehr sehr viel sie brauchen Entlastung"
+  },
+  {
+    date:  "2026-09-08",
+    text:  "Heute gab es nichts zu erzählen<br>und es war das Beste<br>das Bibidibeste was je geschehen"
+  },
+  {
+    date:  "2026-09-07",
+    text:  "Auf den Schreck brauch ich einen Schrock"
+  },
+  {
+    date:  "2026-09-07",
+    text:  "Höcke Siegmund Weidel<br>Hitler Goebbels Himmler<br><br>DER TOD IST EIN MEISTER AUS DEUTSCHLAND (Celan)"
+  },
+  {
+    date:  "2026-09-05",
+    text:  "Sie haben um mehr Kontext gebeten"
+  },
+  {
+    date:  "2026-09-05",
+    text:  "Ich bin kein Mensch<br>sagst du der Maschine wenn sie dich nach deiner Echtheit fragt"
+  },
   {
     date:  "2026-09-05",
     text:  "Sich beim Essen wie ein zufriedenes Tier fühlen"
@@ -2695,10 +3239,6 @@ const ENTRIES = [
     text:  "Die Phantasie ist grenzenlos"
   },
   {
-    date:  "2026-02-23",
-    text:  "Die Phantasie ist grenzenlos"
-  },
-  {
     date:  "2026-02-22",
     text:  "C AMG für Zwanzigtausend"
   },
@@ -3479,10 +4019,6 @@ const ENTRIES = [
   {
     date:  "2025-12-23",
     text:  "Wake up at four<br>Leave at five<br>Get there at six"
-  },
-  {
-    date:  "2025-12-23",
-    text:  "Das gehörnte Mikrofon"
   },
   {
     date:  "2025-12-22",
@@ -5645,10 +6181,6 @@ const ENTRIES = [
     text:  "Die Schale die mich nährt"
   },
   {
-    date:  "2025-05-17",
-    text:  "Ein Jahr in Heidelberg"
-  },
-  {
     date:  "2025-05-16",
     text:  "Sie erstickte an ihrem eigenen Witz"
   },
@@ -5695,10 +6227,6 @@ const ENTRIES = [
   {
     date:  "2025-05-10",
     text:  "Oma driftet in eine andere Welt"
-  },
-  {
-    date:  "2025-05-09",
-    text:  "Mit der richtigen Partnerin geht alles<br><br>Mit dem richtigen Partner geht alles"
   },
   {
     date:  "2025-05-08",
@@ -6175,10 +6703,6 @@ const ENTRIES = [
   {
     date:  "2025-03-19",
     text:  "Ein Mädchen lacht für sich allein"
-  },
-  {
-    date:  "2025-03-19",
-    text:  "ICH WAR NOCH NIE SO STARK ALS MEINE FREUNDIN MICH WEINEN SAH"
   },
   {
     date:  "2025-03-18",
@@ -8148,10 +8672,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-06-02",
-    text:  "Sie zeigt mir ihre Welt<br>Ich bin dabei<br>Ich zeige ihr meine Welt<br>Sie kommt mit"
-  },
-  {
-    date:  "2024-06-02",
     text:  "Kein Ort, den seine Regenjacke noch nicht gesehen hat<br><br>Er nahm seine Regenjacke überall mit hin"
   },
   {
@@ -8348,10 +8868,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-05-14",
-    text:  "Montagnacht<br>Wann hab ich das letzte mal so geheult<br>Geheult weil sie mich so glücklich macht"
-  },
-  {
-    date:  "2024-05-14",
     text:  "Inhalt auf Minimalmodus"
   },
   {
@@ -8429,10 +8945,6 @@ const ENTRIES = [
   {
     date:  "2024-05-11",
     text:  "Lehrstunde Wiener Aktionismus"
-  },
-  {
-    date:  "2024-05-11",
-    text:  "Kostümzwang<br>Devise<br>Wir sind Krüppel"
   },
   {
     date:  "2024-05-11",
@@ -8800,10 +9312,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-04-18",
-    text:  "Ein Künstler muss Entscheidungen treffen"
-  },
-  {
-    date:  "2024-04-18",
     text:  "Liebe so stark dass es perfekt ist"
   },
   {
@@ -8817,10 +9325,6 @@ const ENTRIES = [
   {
     date:  "2024-04-18",
     text:  "Deine Nerven sind schon wieder bis zum Anschlag strapaziert, höre dir zur Beruhigung Bossa Nova an"
-  },
-  {
-    date:  "2024-04-18",
-    text:  "Trage den Schmuck der zwei wichtigsten Frauen in meinem Leben"
   },
   {
     date:  "2024-04-18",
@@ -8972,10 +9476,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-04-11",
-    text:  "Du liebst<br>Du fühlst<br>Du fühlst Liebe<br>Du hast Angst<br>Willst du sie regulieren, die Liebe?<br>Liebe regulieren?<br>Liebe einschränken?<br>Liebe bremsen?<br>Aus Angst?"
-  },
-  {
-    date:  "2024-04-11",
     text:  "Fragestellungen<br>Überall Fragestellungen"
   },
   {
@@ -9032,23 +9532,11 @@ const ENTRIES = [
   },
   {
     date:  "2024-04-10",
-    text:  "Liebst du mich auch noch wenn ich am Boden bin?<br><br>When shit hit the fan is you still a fan?"
-  },
-  {
-    date:  "2024-04-10",
-    text:  "Mein Baby pusht meine boundaries<br><br>Mein Baby bringt mich zu neuen Horizonten"
-  },
-  {
-    date:  "2024-04-10",
     text:  "In dieser Welt bist du nur etwas Wert wenn du was erreicht hast<br><br>In dieser Welt bist du nur liebenswert wenn du was erreicht hast"
   },
   {
     date:  "2024-04-09",
     text:  "Ich sehe den Defizit<br>Ich arbeite ihn auf<br><br>Sehe den Defizit<br>Arbeite ihn auf<br><br>Der Defizit<br>Die Arbeit<br><br>Defizit<br>Arbeit"
-  },
-  {
-    date:  "2024-04-09",
-    text:  "Drei blaue Herzen"
   },
   {
     date:  "2024-04-09",
@@ -9308,10 +9796,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-24",
-    text:  "Wie sie mit den Wochen und Monaten weicher geworden ist"
-  },
-  {
-    date:  "2024-03-24",
     text:  "Beginne ein neues Leben in Tokyo<br><br>Gehe nach Tokyo und schließe dich der Yakuza an"
   },
   {
@@ -9369,10 +9853,6 @@ const ENTRIES = [
   {
     date:  "2024-03-21",
     text:  "Kauf dir ein Onewayticket geh nach New York und werd ein Obdachloser"
-  },
-  {
-    date:  "2024-03-21",
-    text:  "Sie aktiviert mein drittes Auge"
   },
   {
     date:  "2024-03-21",
@@ -9456,10 +9936,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-17",
-    text:  "Jetzt sitz ich wieder hier<br>Und trink mein Honigbier"
-  },
-  {
-    date:  "2024-03-17",
     text:  "Die Gumpi lebt"
   },
   {
@@ -9512,15 +9988,7 @@ const ENTRIES = [
   },
   {
     date:  "2024-03-15",
-    text:  "Ich bin der Mann für die Drecksarbeit"
-  },
-  {
-    date:  "2024-03-15",
     text:  "Möchtest du auf einen Kaffee in meine Wohnung kommen?<br>Ich käme sehr gerne aber leider trinke ich keinen Kaffee.<br>Kein Problem, ich habe keinen."
-  },
-  {
-    date:  "2024-03-15",
-    text:  "Alltagsideologie<br>Alltagsphilosophie"
   },
   {
     date:  "2024-03-15",
@@ -9529,10 +9997,6 @@ const ENTRIES = [
   {
     date:  "2024-03-15",
     text:  "Donnerstagabend<br>Sie ist nicht da<br><br>Donnerstagabend<br>Du bist nicht da<br><br>Donnerstagabend<br>Ich denk an dich<br><br>Donnerstagabend<br>Ich vermisse dich"
-  },
-  {
-    date:  "2024-03-14",
-    text:  "Michel Friedman hat gesagt<br>FEIERE DAS LEBEN"
   },
   {
     date:  "2024-03-14",
@@ -9760,10 +10224,6 @@ const ENTRIES = [
   },
   {
     date:  "2024-02-28",
-    text:  "Hab nen Hunni in der Tasche und fühle mich wie Rambo<br>Anmerkung<br>Der Hunni ging weg für Koks"
-  },
-  {
-    date:  "2024-02-28",
     text:  "Drei Deutsche bei Massenschlägerei mit Skischuhen in Schladming verletzt"
   },
   {
@@ -9805,10 +10265,6 @@ const ENTRIES = [
   {
     date:  "2024-02-27",
     text:  "Für René"
-  },
-  {
-    date:  "2024-02-26",
-    text:  "Sex so lang dass die Eier weh tun"
   },
   {
     date:  "2024-02-24",
@@ -9989,10 +10445,6 @@ const ENTRIES = [
   {
     date:  "2024-02-02",
     text:  "So wie Prince seine Nase hochzog<br>Ziehe ich sie heute noch"
-  },
-  {
-    date:  "2024-02-02",
-    text:  "Ich komme in mein Zimmer und es riecht so schön leicht nach ihr"
   },
   {
     date:  "2024-02-02",
@@ -11642,10 +12094,6 @@ const ENTRIES = [
   },
   {
     date:  "2023-06-01",
-    text:  "DIE SCHLECHTESTE BAND DER WELT<br>„Meine Damen und Herren und alle dazwischen und außerhalb, schön, dass sie heute Abend gekommen sind. Wir sind die schlechteste Band der Welt!“"
-  },
-  {
-    date:  "2023-06-01",
     text:  "Let that sink in."
   },
   {
@@ -12391,10 +12839,6 @@ const ENTRIES = [
   {
     date:  "2021-09-30",
     text:  "Irgendwas zwischen Fetisch und Weltuntergang"
-  },
-  {
-    date:  "2021-08-25",
-    text:  "Der Underdog, der erst im zweiten Anlauf durchstartet."
   },
   {
     date:  "2021-08-23",

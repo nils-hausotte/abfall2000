@@ -4,8 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GEDANKEN 3000</title>
-  <meta name="description" content="GEDANKEN 3000 – ein fortlaufendes Gedankenarchiv von Nils Hausotte." />
+  <title>ABFALL 2000</title>
+  <meta name="description" content="ABFALL 2000 – ein fortlaufendes Gedankenarchiv von Nils Hausotte." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%97%91%EF%B8%8F%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -16,8 +17,9 @@
 
     <div id="header-top">
       <h1 id="site-title">
-        <button id="home-button" type="button" aria-label="Nach oben zum ersten Eintrag">GEDANKEN 3000</button>
+        <button id="home-button" type="button" aria-label="Nach oben zum ersten Eintrag">ABFALL 2000</button>
       </h1>
+      <a id="legal-link" href="impressum.html">Impressum</a>
       <p id="entry-counter">
         <span id="counter-number">0</span>
         <span id="counter-label">and counting</span>
@@ -50,9 +52,12 @@
       </label>
     </div>
 
-    <!-- Ticker: 5 zufällige Einträge, laufen von rechts nach links -->
-    <div id="ticker" aria-label="Zufällige Gedanken">
-      <div id="ticker-track"></div>
+    <!-- Ticker: zufällige Einträge, laufen von rechts nach links.
+         Der Clip-Rahmen lässt ihn beim Runterscrollen nach oben wegschieben. -->
+    <div id="ticker-clip">
+      <div id="ticker" aria-label="Zufällige Gedanken">
+        <div id="ticker-track"></div>
+      </div>
     </div>
 
   </header>
@@ -69,15 +74,11 @@
       <span>Vielleicht war er noch nicht dran.</span>
     </p>
 
-    <!-- Impressum -->
-    <footer id="impressum" aria-label="Impressum">
-      <h2>Impressum</h2>
-      <p>
-        Nils Hausotte<br />
-        <br />
-        Alle Texte sind persönliche Gedanken und keine redaktionellen Inhalte.<br />
-        Kontakt auf Anfrage.
-      </p>
+    <!-- Rechtliches: vollständig auf impressum.html -->
+    <footer id="site-footer">
+      <a href="impressum.html">Impressum</a>
+      <span aria-hidden="true">·</span>
+      <a href="impressum.html#datenschutz">Datenschutz</a>
     </footer>
 
   </div>

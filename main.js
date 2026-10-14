@@ -1,5 +1,5 @@
 /**
- * main.js — GEDANKEN 3000
+ * main.js — ABFALL 2000
  *
  * Nutzer-gesteuertes Scrollen im Credits-Stil.
  * Dazu: Volltextsuche, Filter nach Jahr
@@ -19,6 +19,7 @@
   const searchInput = document.getElementById('search-input');
   const searchClear = document.getElementById('search-clear');
   const yearSelect   = document.getElementById('year-select');
+  const tickerClip  = document.getElementById('ticker-clip');
   const tickerEl    = document.getElementById('ticker');
   const tickerTrack = document.getElementById('ticker-track');
   const noResults   = document.getElementById('no-results');
@@ -176,9 +177,38 @@
     };
   }
 
+  /**
+   * Scrollposition vor der Suche. Beim Leeren der Suche geht es genau dorthin
+   * zurück, statt am Kopf der Seite zu landen. Gemerkt wird der erste sichtbare
+   * Eintrag samt Abstand zum Viewport — robuster als ein nackter scrollY-Wert.
+   */
+  let activeTerm  = '';
+  let savedAnchor = null;
+
+  function captureAnchor() {
+    const limit = header.offsetHeight;
+    const entries = track.children;
+    for (let i = 0; i < entries.length; i++) {
+      const rect = entries[i].getBoundingClientRect();
+      if (rect.bottom > limit) return { id: entries[i].id, top: rect.top };
+    }
+    return null;
+  }
+
+  function restoreAnchor(anchor) {
+    const el = anchor && document.getElementById(anchor.id);
+    if (!el) return;
+    jumpScrollTo(currentScrollY() + el.getBoundingClientRect().top - anchor.top);
+  }
+
   function render() {
     const { term, year } = currentFilter();
     const needle = term.toLowerCase();
+    const wasSearching = activeTerm !== '';
+    const isSearching  = term !== '';
+
+    if (!wasSearching && isSearching) savedAnchor = captureAnchor();
+    activeTerm = term;
 
     const matches = ITEMS.filter(function (item) {
       if (year !== null && item.year !== year) return false;
@@ -198,6 +228,14 @@
     noResults.hidden = matches.length > 0;
     searchClear.hidden = term.length === 0;
     updateCounter(matches.length, term || year !== null);
+
+    if (isSearching) {
+      // Treffer stehen oben — dorthin, damit sie sichtbar sind.
+      jumpScrollTo(0);
+    } else if (wasSearching) {
+      restoreAnchor(savedAnchor);
+      savedAnchor = null;
+    }
   }
 
   function updateCounter(shown, filtered) {
@@ -387,6 +425,19 @@
     document.addEventListener('touchstart', setPointer, { capture: true, passive: true });
   }
 
+  function currentScrollY() {
+    return window.pageYOffset || document.documentElement.scrollTop || 0;
+  }
+
+  /** Sofort springen — `scroll-behavior: smooth` auf <html> kurz aussetzen. */
+  function jumpScrollTo(top) {
+    const root = document.documentElement;
+    const prev = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo(0, Math.max(0, top));
+    root.style.scrollBehavior = prev;
+  }
+
   /** Scrollen mit Fallback für Browser ohne smooth-Option. */
   function scrollToY(top) {
     const y = Math.max(0, top);
@@ -405,6 +456,7 @@
     let target = document.getElementById(`eintrag-${number}`);
 
     if (!target) {
+      savedAnchor = null;               // Sprungziel schlägt gemerkte Position
       searchInput.value = '';
       yearSelect.value = 'all';
       render();
@@ -413,8 +465,13 @@
 
     if (!target) return;
 
-    const pageY = window.pageYOffset || document.documentElement.scrollTop || 0;
-    scrollToY(pageY + target.getBoundingClientRect().top - (header.offsetHeight + 24));
+    // Beim Runterscrollen klappt der Ticker weg, beim Hochscrollen kommt er
+    // zurück — gemessen wird gegen die Header-Höhe am Ende der Fahrt.
+    const targetTop = target.getBoundingClientRect().top;
+    const tickerH   = tickerEl.offsetHeight;
+    const fullH     = header.offsetHeight + tickerHidden;
+    const endH      = targetTop > fullH ? fullH - tickerH : fullH;
+    scrollToY(currentScrollY() + targetTop - (endH + 24));
 
     // Bei schnellen Mehrfachklicks darf der Timer des vorigen Sprungs die
     // Markierung des neuen Ziels nicht wieder abräumen.
@@ -432,10 +489,39 @@
     }, 1600);
   }
 
+  /* ── Ticker weg-/herscrollen ─────────────────────── */
+
+  /**
+   * Runterscrollen schiebt den Ticker Pixel für Pixel nach oben weg,
+   * Hochscrollen holt ihn genauso wieder hervor.
+   */
+  let tickerHidden = 0;   // wie viele px des Tickers gerade verdeckt sind
+  let lastScrollY  = 0;
+
+  function applyTickerHide() {
+    const h = tickerEl.offsetHeight;
+    tickerHidden = Math.min(h, Math.max(0, tickerHidden));
+    tickerClip.style.height = (h - tickerHidden) + 'px';
+    tickerEl.style.transform = `translate3d(0, ${-tickerHidden}px, 0)`;
+  }
+
+  function onScroll() {
+    // iOS-Gummiband über den Seitenrand hinaus nicht mitzählen.
+    const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    const y = Math.min(Math.max(currentScrollY(), 0), max);
+    const dy = y - lastScrollY;
+    lastScrollY = y;
+    if (dy === 0) return;
+
+    tickerHidden += dy;
+    applyTickerHide();
+  }
+
   /* ── Header-Höhe → CSS-Variable ─────────────────── */
 
   function syncHeaderHeight() {
-    const h = header.offsetHeight;
+    // Volle Höhe inkl. Ticker — sonst springt der Inhalt beim Wegklappen.
+    const h = header.offsetHeight + tickerHidden;
     document.documentElement.style.setProperty('--header-height', h + 'px');
   }
 
@@ -516,7 +602,10 @@
       pausedByFocus = false; syncTicker();
     });
 
+    window.addEventListener('scroll', onScroll, { passive: true });
+
     window.addEventListener('resize', function () {
+      applyTickerHide();
       syncHeaderHeight();
       measureTicker();
     });
@@ -539,6 +628,7 @@
     populateYearSelect();
     render();
     buildTicker();
+    lastScrollY = currentScrollY();
     syncHeaderHeight();
     bindEvents();
     startTickerWatchdog();
